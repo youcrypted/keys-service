@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans SYSTEM "${JWEBSOCKET_HOME}/conf/spring-beans.dtd">
 <beans>  
-	<!-- MongoDB server connection -->
-	<bean id="mongodbConnection0" class="com.mongodb.MongoClient" destroy-method="close">
+	<!-- MongoDB connection -->
+	<bean id="mongodbConnection" class="com.mongodb.MongoClient" destroy-method="close">
 		<constructor-arg value="localhost"/>
 	</bean>
 	
-	<bean id="keysDatabase" class="org.jwebsocket.storage.mongodb.MongoDBUtils" factory-method="getDB">
-		<constructor-arg ref="mongodbConnection0"/>
+	<bean id="youcryptedDatabase" class="org.jwebsocket.storage.mongodb.MongoDBUtils" factory-method="getDB">
+		<constructor-arg ref="mongodbConnection"/>
 		<constructor-arg value="youcrypted"/>
 		<!-- database user/password for authentication if required
 		<constructor-arg value="user"/>
@@ -16,7 +16,7 @@
 	</bean>
 	
 	<!-- the mongodb collection that contains the user's keys-->
-	<bean id="keysCollection" factory-bean="keysDatabase" factory-method="getCollection">
+	<bean id="keysCollection" factory-bean="youcryptedDatabase" factory-method="getCollection">
 		<constructor-arg value="keys" />
 	</bean>
 </beans>

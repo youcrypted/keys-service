@@ -5,5 +5,5 @@
 	"permissions": [
 		"permission java.io.FilePermission \"${APP_HOME}/-\", \"read,write,delete\""
 	],
-	"author": "Rolando SM <kyberneees@gmail.com> 2015"
+	"author": "Rolando SM <kyberneees@youcrypted.com> 2015"
 }

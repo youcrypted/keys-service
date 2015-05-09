@@ -1,4 +1,6 @@
-App.setDescription("User's RSA keys service for TESN");
+/* global App */
+
+App.setDescription("User's keys service for TESN");
 
 App.importScript('${APP_HOME}/config');
 App.on('appLoaded', function (aHotLoad) {

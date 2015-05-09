@@ -1,3 +1,5 @@
+/* global App */
+
 App.getStorage().put('database', {
-	beanId: 'keysCollection'
+	keys: 'keysCollection'
 });
