@@ -68,7 +68,7 @@ if (App.isWorkerNode()) {
 		}
 	});
 
-// to be invoked from backend
+	// to be invoked from backend
 	EventBus.register(SET_KEYS_NS, {
 		OnMessage: function (aMsg) {
 			aMsg.reply({
@@ -77,7 +77,7 @@ if (App.isWorkerNode()) {
 		}
 	});
 
-// to be invoked from backend
+	// to be invoked from backend
 	EventBus.register(SET_PRIVATE_KEY_NS, {
 		OnMessage: function (aMsg) {
 			aMsg.reply({
@@ -86,7 +86,7 @@ if (App.isWorkerNode()) {
 		}
 	});
 
-// to be invoked from backend
+	// to be invoked from backend
 	EventBus.register(REMOVE_KEYS, {
 		OnMessage: function (aMsg) {
 			aMsg.reply({
