@@ -43,54 +43,55 @@ App.publish("keys", {
 // -----------------------------------------------
 // EVENTS REGISTRATION
 // -----------------------------------------------
+if (App.isWorkerNode()) {
+	EventBus.register(GET_PRIVATE_KEY_NS, {
+		OnMessage: function (aMsg) {
+			aMsg.reply({
+				data: DatabaseService.getUserPrivateKey(aMsg.username)
+			});
+		}
+	});
 
-EventBus.register(GET_PRIVATE_KEY_NS, {
-	OnMessage: function (aMsg) {
-		aMsg.reply({
-			data: DatabaseService.getUserPrivateKey(aMsg.username)
-		});
-	}
-});
+	EventBus.register(GET_PUBLIC_KEY_NS, {
+		OnMessage: function (aMsg) {
+			aMsg.reply({
+				data: DatabaseService.getUserPublicKey(aMsg.username)
+			});
+		}
+	});
 
-EventBus.register(GET_PUBLIC_KEY_NS, {
-	OnMessage: function (aMsg) {
-		aMsg.reply({
-			data: DatabaseService.getUserPublicKey(aMsg.username)
-		});
-	}
-});
-
-EventBus.register(GET_KEYS_NS, {
-	OnMessage: function (aMsg) {
-		aMsg.reply({
-			data: DatabaseService.getUserKeys(aMsg.username)
-		});
-	}
-});
-
-// to be invoked from backend
-EventBus.register(SET_KEYS_NS, {
-	OnMessage: function (aMsg) {
-		aMsg.reply({
-			data: DatabaseService.setUserKeys(aMsg.username, aMsg.privateKey, aMsg.publicKey)
-		});
-	}
-});
+	EventBus.register(GET_KEYS_NS, {
+		OnMessage: function (aMsg) {
+			aMsg.reply({
+				data: DatabaseService.getUserKeys(aMsg.username)
+			});
+		}
+	});
 
 // to be invoked from backend
-EventBus.register(SET_PRIVATE_KEY_NS, {
-	OnMessage: function (aMsg) {
-		aMsg.reply({
-			data: DatabaseService.setUserPrivateKey(aMsg.username, aMsg.privateKey)
-		});
-	}
-});
+	EventBus.register(SET_KEYS_NS, {
+		OnMessage: function (aMsg) {
+			aMsg.reply({
+				data: DatabaseService.setUserKeys(aMsg.username, aMsg.privateKey, aMsg.publicKey)
+			});
+		}
+	});
 
 // to be invoked from backend
-EventBus.register(REMOVE_KEYS, {
-	OnMessage: function (aMsg) {
-		aMsg.reply({
-			data: DatabaseService.removeUserKeys(aMsg.username)
-		});
-	}
-});
+	EventBus.register(SET_PRIVATE_KEY_NS, {
+		OnMessage: function (aMsg) {
+			aMsg.reply({
+				data: DatabaseService.setUserPrivateKey(aMsg.username, aMsg.privateKey)
+			});
+		}
+	});
+
+// to be invoked from backend
+	EventBus.register(REMOVE_KEYS, {
+		OnMessage: function (aMsg) {
+			aMsg.reply({
+				data: DatabaseService.removeUserKeys(aMsg.username)
+			});
+		}
+	});
+}
